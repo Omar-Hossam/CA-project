@@ -9,7 +9,7 @@ public class Control {
 	int ALUOp1;
 	int ALUOp0;
 	public void set_controler(String instruction){
-		if (instruction == "0000"){
+		if (instruction.equals("000000")){
 			regDst = 1;
 			ALUSrc = 0;
 			MemToReg = 0;

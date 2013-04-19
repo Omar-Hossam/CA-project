@@ -2,7 +2,7 @@ public class ALU {
 	public String performOperation(String data1, String data2, int fifi){
 		int temp = 0;
 		switch (fifi){
-			case 1: 
+			case 100000: 
 				temp = Integer.parseInt(data1,2)+Integer.parseInt(data2,2);
 				String binaryValue = Integer.toBinaryString(temp);
 				return binaryValue;

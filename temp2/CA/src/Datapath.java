@@ -1,61 +1,63 @@
 public class Datapath {
-	int pc;
-	Adder adder;
-	Control control;
-	IM im;
-	Registers registerFile;
-	ALU alu;
-	DM dm;
-	Mux mux;
-	reg $zero;
-	reg $at;
-	reg $v0;
-	reg $v1;
-	reg $a0;
-	reg $a1;
-	reg $a2;
-	reg $a3;
-	reg $t0;
-	reg $t1;
-	reg $t2;
-	reg $t3;
-	reg $t4;
-	reg $t5;
-	reg $t6;
-	reg $t7;
-	reg $s0;
-	reg $s1;
-	reg $s2;
-	reg $s3;
-	reg $s4;
-	reg $s5;
-	reg $s6;
-	reg $s7;
-	reg $t8;
-	reg $t9;
-	reg $k0;
-	reg $k1;
-	reg $gp;
-	reg $sp;
-	reg $fp;
-	reg $ra;
-	public void performInstruction(String instruction){
-		String opcode = translate(instruction);
-		String Instruction = im.getInstruction(pc);
+	int pc = 0;
+	Adder adder = new Adder();
+	Control control = new Control();
+	IM im = new IM();
+	Registers registerFile = new Registers();
+	ALU alu = new ALU();
+	DM dm = new DM();
+	Mux mux = new Mux();
+	reg $zero = new reg();
+	reg $at = new reg();
+	reg $v0 = new reg();
+	reg $v1 = new reg();
+	reg $a0 = new reg();
+	reg $a1 = new reg();
+	reg $a2 = new reg();
+	reg $a3 = new reg();
+	reg $t0 = new reg();
+	reg $t1 = new reg();
+	reg $t2 = new reg();
+	reg $t3 = new reg();
+	reg $t4 = new reg();
+	reg $t5 = new reg();
+	reg $t6 = new reg();
+	reg $t7 = new reg();
+	reg $s0 = new reg();
+	reg $s1 = new reg();
+	reg $s2 = new reg();
+	reg $s3 = new reg();
+	reg $s4 = new reg();
+	reg $s5 = new reg();
+	reg $s6 = new reg();
+	reg $s7 = new reg();
+	reg $t8 = new reg();
+	reg $t9 = new reg();
+	reg $k0 = new reg();
+	reg $k1 = new reg();
+	reg $gp = new reg();
+	reg $sp = new reg();
+	reg $fp = new reg();
+	reg $ra = new reg();
+	public void performInstruction(String ins){
+		//String Instruction = im.getInstruction(pc);
 		pc= adder.add(pc, 4);
-		String[]z=Instruction.split(" ");
-		String in =z[0]; 
+		String[]z=ins.split(" ");
+		String in = z[0]; 
 		control.set_controler(in);
 		registerFile.setRregister1(this.findRegByOpcode(z[1]));
 		registerFile.setRregister2(this.findRegByOpcode(z[2]));
 		String resultMux = mux.select(z[2], z[3], control.regDst);
 		registerFile.setWregister(this.findRegByOpcode(resultMux));
-		String r1 = registerFile.rregister2.data;
-		String resultMux2 = mux.select(r1, "", control.ALUSrc);
-		String aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, control.ALUOp1);
+		String r2 = registerFile.rregister2.data;
+		String resultMux2 = mux.select(r2, "", control.ALUSrc);
+		String aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, Integer.parseInt(z[5]));
 		String resultMux3 = mux.select(aluRes, "", control.MemToReg);
-		registerFile.setWdata(resultMux3);
-		this.findRegByOpcode(z[3]).data = registerFile.getWdata();		
+		if(control.RegWrite == 1) {
+			registerFile.setWdata(resultMux3);
+			this.findRegByOpcode(z[3]).data = registerFile.getWdata();
+			System.out.println("Result of operation: " + registerFile.getWdata());
+		}
 	}
 	public reg findRegByOpcode(String s){
 		if(s.equals("10001")){
@@ -70,7 +72,7 @@ public class Datapath {
 	}
 	public String translate(String x){
 		String result = "";
-		String[] a= new String[5];
+		String[] a;
 		a=x.split(" ");
 		if (a[0].equals("ADD")) {
 			result += "0000000";
@@ -92,6 +94,10 @@ public class Datapath {
 		}
 	}
 	public static void main(String [] args){
-		
+		Datapath p = new Datapath();
+		p.$s1.set("10");
+		p.$s2.set("101");
+		p.$s3.set("01");
+		p.performInstruction("000000 10001 10010 10011 00000 100000");
 	}
 }
