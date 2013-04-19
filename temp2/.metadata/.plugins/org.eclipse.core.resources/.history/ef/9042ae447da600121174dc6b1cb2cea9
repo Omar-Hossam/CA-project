@@ -1,0 +1,9 @@
+import java.util.ArrayList;
+
+public class IM {
+	ArrayList<String> intsructions = new ArrayList<String>();
+	public String getInstruction(int pc){
+		pc = pc / 4;
+		return intructions.get(pc);
+	}
+}

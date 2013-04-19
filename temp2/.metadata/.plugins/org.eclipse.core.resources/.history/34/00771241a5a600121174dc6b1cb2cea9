@@ -1,0 +1,10 @@
+public class ALU {
+	public String performOperation(int data1, int data2, int fifi){
+		int temp = 0;
+		switch (fifi){
+			case 0: temp=data1+data2;			
+		}
+		return temp + "";
+
+	}
+}

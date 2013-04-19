@@ -1,0 +1,20 @@
+public class Datapath {
+	int pc;
+	public void performInstruction(String instruction){
+		String workingInst = translate(instruction);
+		
+	}
+	public String translate(String x){
+		String[] a= new String[5];
+		a=x.split(" ");
+		String y=a[0];
+		switch(y){
+		case "Add" :
+			return a[0];
+		}
+		
+	}
+	public static void main(String [] args){
+		
+	}
+}

@@ -1,0 +1,7 @@
+public class ALU {
+	public String performOperation(int data1, int data2, int control){
+		switch (control){
+			case 0: reutrn data1
+		}
+	}
+}

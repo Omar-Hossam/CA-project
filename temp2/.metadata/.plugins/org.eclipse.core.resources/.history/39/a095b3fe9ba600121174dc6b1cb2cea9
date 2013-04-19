@@ -1,0 +1,35 @@
+public class Datapath {
+	int pc;
+	public void performInstruction(String instruction){
+		String opcode = translate(instruction);
+		
+		
+	}
+	public String translate(String x){
+		String result = "";
+		String[] a= new String[5];
+		a=x.split(" ");
+		String y=a[0];
+		if (a[0].equals("ADD")) {
+			result += "0000000";
+		}
+		result += getRegOpcode(a[2]);
+		result += getRegOpcode(a[3]);
+		result += getRegOpcode(a[1]);
+		return result;
+	}
+	public String getRegOpcode(String a){
+		if(a.equals("$s1")){
+			return "10001";
+		}
+		else if(a.equals("$s2")){
+			return "10010";
+		}
+		else{
+			return "10011";
+		}
+	}
+	public static void main(String [] args){
+		
+	}
+}

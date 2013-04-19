@@ -1,0 +1,7 @@
+public class Registers {
+	reg rregister1;
+	reg rregister2;
+	reg wregister;
+	String wdata;
+	
+}

@@ -1,0 +1,75 @@
+public class Datapath {
+	int pc;
+	Adder adder;
+	Control control;
+	IM im;
+	Registers registerFile;
+	ALU alu;
+	DM dm;
+	Mux mux;
+	reg $zero;
+	reg $at;
+	reg $v0;
+	reg $v1;
+	reg $a0;
+	reg $a1;
+	reg $a2;
+	reg $a3;
+	reg $t0;
+	reg $t1;
+	reg $t2;
+	reg $t3;
+	reg $t4;
+	reg $t5;
+	reg $t6;
+	reg $t7;
+	reg $s0;
+	reg $s1;
+	reg $s2;
+	reg $s3;
+	reg $s4;
+	reg $s5;
+	reg $s6;
+	reg $s7;
+	reg $t8;
+	reg $t9;
+	reg $k0;
+	reg $k1;
+	reg $gp;
+	reg $sp;
+	reg $fp;
+	reg $ra;
+	public void performInstruction(String instruction){
+		String opcode = translate(instruction);
+		pc= adder.add(pc, 4);
+		
+		
+		
+	}
+	public String translate(String x){
+		String result = "";
+		String[] a= new String[5];
+		a=x.split(" ");
+		if (a[0].equals("ADD")) {
+			result += "0000000";
+		}
+		result += getRegOpcode(a[2]);
+		result += getRegOpcode(a[3]);
+		result += getRegOpcode(a[1]);
+		return result;
+	}
+	public String getRegOpcode(String a){
+		if(a.equals("$s1")){
+			return "10001";
+		}
+		else if(a.equals("$s2")){
+			return "10010";
+		}
+		else{
+/*$s3*/			return "10011";
+		}
+	}
+	public static void main(String [] args){
+		
+	}
+}

@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+public class DM {
+	ArrayList<String> memory = new ArrayList<String>();
+	public String datamemory(String address, String writeData, int enable){
+		if (enable == 0){
+			return memory(address);
+		}
+		else{
+			return writeData;
+		}
+	}
+}
