@@ -1,6 +1,6 @@
 public class Adder {
-	public int add(int a, int b){
-		int x = a+b;
+	public long add(long a, long b){
+		long x = a+b;
 		return x;
 	}
 }

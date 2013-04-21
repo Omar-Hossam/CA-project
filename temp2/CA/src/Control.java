@@ -69,5 +69,17 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		//beq
+		if (instruction.equals("000100")) {
+			regDst = 0;
+			ALUSrc = 0;
+			MemToReg = 0;
+			RegWrite = 0;
+			MemRead = 0;
+			MemWrite = 0;
+			branch = 1;
+			ALUOp1 = 0;
+			ALUOp0 = 1;
+		}
 	}
 }
