@@ -2,13 +2,18 @@ import java.util.ArrayList;
 
 public class DM {
 	ArrayList<String> memory = new ArrayList<String>();
+	ArrayList<String> index = new ArrayList<String>(); 
 	public String readData(String address){
-		int x = Integer.parseInt(address);
-		return memory.get(x/4);
+		if (index.contains(address)) {
+			int i = index.indexOf(address);
+			return memory.get(i);
+		} else {
+			return "null";
+		}
 	}
 	
 	public void writeData(String address, String data){
-		int x = Integer.parseInt(address);
-		memory.set(x/4, data);
+		index.add(address);
+		memory.add(data);
 	}
 }
