@@ -19,6 +19,10 @@ public class ALU {
 					}
 				}
 				return binaryValue;
+			case 100101:
+				temp = Integer.parseInt(data1,2) | Integer.parseInt(data2,2);
+				String orValue = Integer.toBinaryString(temp);
+				return orValue;
 		}
 		return "";
 	}
