@@ -13,21 +13,7 @@ public class DM {
 	}
 	
 	public void writeData(String address, String data){
-		long temp = 0;
-		String binaryValue = "";
-	    index.add(address);
-		memory.add(data.substring(0, 8));
-		temp = Long.parseLong(address,2)+1;
-		binaryValue = Long.toBinaryString(temp);
-		index.add(binaryValue);
-		memory.add(data.substring(8, 16));
-		temp = Long.parseLong(address,2)+2;
-		binaryValue = Long.toBinaryString(temp);
-		index.add(binaryValue);
-		memory.add(data.substring(16, 25));
-		temp = Long.parseLong(address,2)+3;
-		binaryValue = Long.toBinaryString(temp);
-		index.add(binaryValue);
-		memory.add(data.substring(25, 32));
+		index.add(address);
+		memory.add(data);
 	}
 }

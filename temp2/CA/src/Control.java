@@ -9,6 +9,7 @@ public class Control {
 	int ALUOp1;
 	int ALUOp0;
 	public void set_controler(String instruction){
+		//R-type
 		if (instruction.equals("000000")){
 			regDst = 1;
 			ALUSrc = 0;
@@ -20,6 +21,7 @@ public class Control {
 			ALUOp1 = 1;
 			ALUOp0 = 0;
 		}
+		//lw
 		if (instruction.equals("100011")) {
 			regDst = 0;
 			ALUSrc = 1;
@@ -31,7 +33,32 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		//sw
 		if (instruction.equals("101011")) {
+			regDst = 0;
+			ALUSrc = 1;
+			MemToReg = 1;
+			RegWrite = 0;
+			MemRead = 0;
+			MemWrite = 1;
+			branch = 0;
+			ALUOp1 = 0;
+			ALUOp0 = 0;
+		}
+		//sh
+		if (instruction.equals("101001")) {
+			regDst = 0;
+			ALUSrc = 1;
+			MemToReg = 1;
+			RegWrite = 0;
+			MemRead = 0;
+			MemWrite = 1;
+			branch = 0;
+			ALUOp1 = 0;
+			ALUOp0 = 0;
+		}
+		//sb
+		if (instruction.equals("101000")) {
 			regDst = 0;
 			ALUSrc = 1;
 			MemToReg = 1;
