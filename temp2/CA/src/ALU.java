@@ -23,6 +23,10 @@ public class ALU {
 				temp = Long.parseLong(data1,2) | Long.parseLong(data2,2);
 				String orValue = Long.toBinaryString(temp);
 				return orValue;
+			case 100010:
+				temp = Long.parseLong(data1,2) - Long.parseLong(data2,2);
+				binaryValue = Long.toBinaryString(temp);
+				return binaryValue; 
 		}
 		return "";
 	}

@@ -7,4 +7,12 @@ public class Mux {
 			return b;
 		}
 	}
+	public long select(long a, long b, int s){
+		if(s == 0){
+			return a;
+		}
+		else{
+			return b;
+		}
+	}
 }
