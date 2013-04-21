@@ -79,7 +79,21 @@ public class Datapath {
 			if(in.equals("101011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
 						resultMux2, 100000);
-				dm.writeData(aluRes, registerFile.rregister1.data);
+				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
+				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+1), registerFile.rregister1.data.substring(8, 16));
+				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+2), registerFile.rregister1.data.substring(16, 25));
+				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+3), registerFile.rregister1.data.substring(25, 32));
+			}
+			if(in.equals("101001")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(8, 16));
+				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+1), registerFile.rregister1.data.substring(0, 8));
+			}
+			if(in.equals("101000")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				dm.writeData (Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
 			}
 		}
 		String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
