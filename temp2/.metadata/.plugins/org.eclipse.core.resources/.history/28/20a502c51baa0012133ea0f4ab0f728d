@@ -1,0 +1,103 @@
+public class Datapath {
+	int pc = 0;
+	Adder adder = new Adder();
+	Control control = new Control();
+	IM im = new IM();
+	Registers registerFile = new Registers();
+	ALU alu = new ALU();
+	DM dm = new DM();
+	Mux mux = new Mux();
+	reg $zero = new reg();
+	reg $at = new reg();
+	reg $v0 = new reg();
+	reg $v1 = new reg();
+	reg $a0 = new reg();
+	reg $a1 = new reg();
+	reg $a2 = new reg();
+	reg $a3 = new reg();
+	reg $t0 = new reg();
+	reg $t1 = new reg();
+	reg $t2 = new reg();
+	reg $t3 = new reg();
+	reg $t4 = new reg();
+	reg $t5 = new reg();
+	reg $t6 = new reg();
+	reg $t7 = new reg();
+	reg $s0 = new reg();
+	reg $s1 = new reg();
+	reg $s2 = new reg();
+	reg $s3 = new reg();
+	reg $s4 = new reg();
+	reg $s5 = new reg();
+	reg $s6 = new reg();
+	reg $s7 = new reg();
+	reg $t8 = new reg();
+	reg $t9 = new reg();
+	reg $k0 = new reg();
+	reg $k1 = new reg();
+	reg $gp = new reg();
+	reg $sp = new reg();
+	reg $fp = new reg();
+	reg $ra = new reg();
+	public void performInstruction(String ins){
+		//String Instruction = im.getInstruction(pc);
+		pc= adder.add(pc, 4);
+		String[]z=ins.split(" ");
+		String in = z[0]; 
+		control.set_controler(in);
+		registerFile.setRregister1(this.findRegByOpcode(z[1]));
+		registerFile.setRregister2(this.findRegByOpcode(z[2]));
+		String resultMux = mux.select(z[2], z[3], control.regDst);
+		registerFile.setWregister(this.findRegByOpcode(resultMux));
+		String r2 = registerFile.rregister2.data;
+		String resultMux2 = mux.select(r2, "", control.ALUSrc);
+		String aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, Integer.parseInt(z[5]));
+		String resultMux3 = mux.select(aluRes, "", control.MemToReg);
+		if(control.RegWrite == 1) {
+			registerFile.setWdata(resultMux3);
+			this.findRegByOpcode(z[3]).data = registerFile.getWdata();
+			System.out.println("Result of operation: " + registerFile.getWdata());
+		}
+	}
+	public reg findRegByOpcode(String s){
+		if(s.equals("10001")){
+			return this.$s1;
+		}
+		else if(s.equals("10010")){
+			return this.$s2;
+		}
+		else{
+			return this.$s3;
+		}
+	}
+	public String translate(String x){
+		String result = "";
+		String[] a;
+		a=x.split(" ");
+		if (a[0].equals("ADD")) {
+			result += "0000000";
+		}
+		result += getRegOpcode(a[2]);
+		result += getRegOpcode(a[3]);
+		result += getRegOpcode(a[1]);
+		return result;
+	}
+	public String getRegOpcode(String a){
+		if(a.equals("$s1")){
+			return "10001";
+		}
+		else if(a.equals("$s2")){
+			return "10010";
+		}
+		else{
+/*$s3*/			return "10011";
+		}
+	}
+	public static void main(String [] args){
+		Datapath p = new Datapath();
+		p.$s1.set("100");
+		p.$s2.set("101");
+		p.$s3.set("01");
+		p.performInstruction("000000 10001 10010 10011 00000 100101");
+	}
+}

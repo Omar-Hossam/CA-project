@@ -95,9 +95,9 @@ public class Datapath {
 	}
 	public static void main(String [] args){
 		Datapath p = new Datapath();
-		p.$s1.set("10");
-		p.$s2.set("101");
+		p.$s1.set("100");
+		p.$s2.set("100");
 		p.$s3.set("01");
-		p.performInstruction("000000 10001 10010 10011 00000 100000");
+		p.performInstruction("000000 10001 10010 10011 00000 100101");
 	}
 }
