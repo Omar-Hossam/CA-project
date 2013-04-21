@@ -16,18 +16,18 @@ public class DM {
 		long temp = 0;
 		String binaryValue = "";
 	    index.add(address);
-		memory.add(data.substring(0, 7));
+		memory.add(data.substring(0, 8));
 		temp = Long.parseLong(address,2)+1;
 		binaryValue = Long.toBinaryString(temp);
 		index.add(binaryValue);
-		memory.add(data.substring(8, 15));
+		memory.add(data.substring(8, 16));
 		temp = Long.parseLong(address,2)+2;
 		binaryValue = Long.toBinaryString(temp);
 		index.add(binaryValue);
-		memory.add(data.substring(16, 24));
+		memory.add(data.substring(16, 25));
 		temp = Long.parseLong(address,2)+3;
 		binaryValue = Long.toBinaryString(temp);
 		index.add(binaryValue);
-		memory.add(data.substring(25, 31));
+		memory.add(data.substring(25, 32));
 	}
 }
