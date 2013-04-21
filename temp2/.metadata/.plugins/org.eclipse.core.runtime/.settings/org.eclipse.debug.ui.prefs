@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Sat Apr 20 01:45:02 GMT+02:00 2013
+=======
+#Sat Apr 20 22:27:50 EET 2013
+>>>>>>> e343a99a0b36b0e84a9dcb6786bf98164f89924d
 eclipse.preferences.version=1
 preferredTargets=default\:default|
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n

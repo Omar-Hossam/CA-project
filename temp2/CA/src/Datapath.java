@@ -50,13 +50,27 @@ public class Datapath {
 		String resultMux = mux.select(z[2], z[3], control.regDst);
 		registerFile.setWregister(this.findRegByOpcode(resultMux));
 		String r2 = registerFile.rregister2.data;
-		String resultMux2 = mux.select(r2, "", control.ALUSrc);
-		String aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, Integer.parseInt(z[5]));
-		String resultMux3 = mux.select(aluRes, "", control.MemToReg);
+		String signExtend = "";
+		if (z[3].charAt(0) == '1') {
+			signExtend = "1111111111111111" + z[3];
+		} else {
+			signExtend = "0000000000000000" + z[3];
+		}
+		String resultMux2 = mux.select(r2, signExtend, control.ALUSrc);
+		String aluRes = "";
+		if (in.equals("000000")) {
+			aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, Integer.parseInt(z[5]));			
+		}
+		String dataRead = "";
+		if (in.equals("100011")) {
+			aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, 100000);
+			dataRead = dm.readData(aluRes);
+		}
+		String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
 		if(control.RegWrite == 1) {
 			registerFile.setWdata(resultMux3);
-			this.findRegByOpcode(z[3]).data = registerFile.getWdata();
-			System.out.println("Result of operation: " + registerFile.getWdata());
+			this.findRegByOpcode(resultMux).data = registerFile.getWdata();
+			System.out.println("Result of operation: " + registerFile.wregister.data);
 		}
 	}
 	public reg findRegByOpcode(String s){
@@ -99,5 +113,6 @@ public class Datapath {
 		p.$s2.set("100");
 		p.$s3.set("01");
 		p.performInstruction("000000 10001 10010 10011 00000 100101");
+		p.performInstruction("000000 10001 10010 10011 00000 100111");
 	}
 }
