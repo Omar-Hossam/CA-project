@@ -39,11 +39,12 @@ public class Datapath {
 	reg $sp = new reg();
 	reg $fp = new reg();
 	reg $ra = new reg();
-	public void performInstruction(String ins){
-		//String Instruction = im.getInstruction(pc);
-		pc= adder.add(pc, 4);
-		String[]z=ins.split(" ");
-		String in = z[0]; 
+
+	public void performInstruction(String ins) {
+		// String Instruction = im.getInstruction(pc);
+		pc = adder.add(pc, 4);
+		String[] z = ins.split(" ");
+		String in = z[0];
 		control.set_controler(in);
 		registerFile.setRregister1(this.findRegByOpcode(z[1]));
 		registerFile.setRregister2(this.findRegByOpcode(z[2]));
@@ -59,35 +60,51 @@ public class Datapath {
 		String resultMux2 = mux.select(r2, signExtend, control.ALUSrc);
 		String aluRes = "";
 		if (in.equals("000000")) {
-			aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, Integer.parseInt(z[5]));			
+			aluRes = alu.performOperation(registerFile.rregister1.data,
+					resultMux2, Integer.parseInt(z[5]));
 		}
 		String dataRead = "";
-		if (in.equals("100011")) {
-			aluRes = alu.performOperation(registerFile.rregister1.data , resultMux2, 100000);
-			dataRead = dm.readData(aluRes);
+		if (control.MemRead == 1) {
+			if (in.equals("100011")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				String part0 = aluRes; 
+				String part1 = Long.toBinaryString(Long.parseLong(aluRes,2)+1);
+				String part2 = Long.toBinaryString(Long.parseLong(aluRes,2)+2);
+				String part3 = Long.toBinaryString(Long.parseLong(aluRes,2)+3);
+				dataRead = dm.readData(part0) + dm.readData(part1) + dm.readData(part2) + dm.readData(part3);
+			}
+		}
+		if (control.MemWrite == 1) {
+			if(in.equals("101011")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				dm.writeData(aluRes, registerFile.rregister1.data);
+			}
 		}
 		String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
-		if(control.RegWrite == 1) {
+		if (control.RegWrite == 1) {
 			registerFile.setWdata(resultMux3);
 			this.findRegByOpcode(resultMux).data = registerFile.getWdata();
-			System.out.println("Result of operation: " + registerFile.wregister.data);
+			System.out.println("Result of operation: "
+					+ registerFile.wregister.data);
 		}
 	}
-	public reg findRegByOpcode(String s){
-		if(s.equals("10001")){
+
+	public reg findRegByOpcode(String s) {
+		if (s.equals("10001")) {
 			return this.$s1;
-		}
-		else if(s.equals("10010")){
+		} else if (s.equals("10010")) {
 			return this.$s2;
-		}
-		else{
+		} else {
 			return this.$s3;
 		}
 	}
-	public String translate(String x){
+
+	public String translate(String x) {
 		String result = "";
 		String[] a;
-		a=x.split(" ");
+		a = x.split(" ");
 		if (a[0].equals("ADD")) {
 			result += "0000000";
 		}
@@ -96,22 +113,24 @@ public class Datapath {
 		result += getRegOpcode(a[1]);
 		return result;
 	}
-	public String getRegOpcode(String a){
-		if(a.equals("$s1")){
+
+	public String getRegOpcode(String a) {
+		if (a.equals("$s1")) {
 			return "10001";
-		}
-		else if(a.equals("$s2")){
+		} else if (a.equals("$s2")) {
 			return "10010";
-		}
-		else{
-/*$s3*/			return "10011";
+		} else {
+			/* $s3 */return "10011";
 		}
 	}
-	public static void main(String [] args){
+
+	public static void main(String[] args) {
 		Datapath p = new Datapath();
-		p.$s1.set("10");
-		p.$s2.set("10");
-		p.$s3.set("010");
+		p.$s1.set("00001000000000000000000000000110");
+		p.$s2.set("11010000000000000000000000000011");
+		p.$s3.set("10");
 		p.performInstruction("000000 10001 10010 10011 00000 100111");
+		p.performInstruction("101011 10010 10010 000000000000000001");
+		p.performInstruction("100011 10010 10010 000000000000000001");
 	}
 }
