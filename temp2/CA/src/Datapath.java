@@ -69,6 +69,9 @@ public class Datapath {
 		if(in.equals("001101")){
 			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100101);
 		}
+		if(in.equals("001100")){
+			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100100);
+		}
 		String dataRead = "";
 		if (control.MemRead == 1) {
 			if (in.equals("100011")) {
@@ -86,6 +89,11 @@ public class Datapath {
 				String part0 = aluRes; 
 				String part1 = Long.toBinaryString(Long.parseLong(aluRes,2)+1);
 				dataRead = dm.readData(part0) + dm.readData(part1);
+			}
+			if (in.equals("001100")){
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				dataRead = dm.readData(aluRes);
 			}
 		}
 		if (control.MemWrite == 1) {

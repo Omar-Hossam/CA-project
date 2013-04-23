@@ -105,5 +105,17 @@ public class Control {
 			ALUOp1 = 1;
 			ALUOp0 = 0;
 		}
+		//andi
+		if (instruction.equals("001100")){
+			regDst = 0;
+			ALUSrc = 1;
+			MemToReg = 0;
+			RegWrite = 1;
+			MemRead = 0;
+			MemWrite = 0;
+			branch = 0;
+			ALUOp1 = 1;
+			ALUOp0 = 0;
+		}
 	}
 }
