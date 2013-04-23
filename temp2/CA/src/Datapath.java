@@ -63,6 +63,12 @@ public class Datapath {
 			aluRes = alu.performOperation(registerFile.rregister1.data,
 					resultMux2, Integer.parseInt(z[5]));
 		}
+		if(in.equals("001000")){
+			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100000);
+		}
+		if(in.equals("001101")){
+			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100101);
+		}
 		String dataRead = "";
 		if (control.MemRead == 1) {
 			if (in.equals("100011")) {
@@ -73,6 +79,13 @@ public class Datapath {
 				String part2 = Long.toBinaryString(Long.parseLong(aluRes,2)+2);
 				String part3 = Long.toBinaryString(Long.parseLong(aluRes,2)+3);
 				dataRead = dm.readData(part0) + dm.readData(part1) + dm.readData(part2) + dm.readData(part3);
+			}
+			if (in.equals("100001")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				String part0 = aluRes; 
+				String part1 = Long.toBinaryString(Long.parseLong(aluRes,2)+1);
+				dataRead = dm.readData(part0) + dm.readData(part1);
 			}
 		}
 		if (control.MemWrite == 1) {
@@ -146,5 +159,6 @@ public class Datapath {
 		p.performInstruction("000000 10001 10010 10011 00000 100111");
 		p.performInstruction("101011 10010 10010 000000000000000001");
 		p.performInstruction("100011 10010 10010 000000000000000001");
+		p.performInstruction("001000 10001 10010 000000000001100100");
 	}
 }
