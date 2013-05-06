@@ -8,6 +8,7 @@ public class Control {
 	int branch;
 	int ALUOp1;
 	int ALUOp0;
+	int jump;
 	public void set_controler(String instruction){
 		//R-type
 		if (instruction.equals("000000")){
@@ -20,6 +21,7 @@ public class Control {
 			branch = 0;
 			ALUOp1 = 1;
 			ALUOp0 = 0;
+			jump = 0;
 		}
 		//lw
 		if (instruction.equals("100011")) {
@@ -32,6 +34,7 @@ public class Control {
 			branch = 0;
 			ALUOp1 = 0;
 			ALUOp0 = 0;
+			jump = 0;
 		}
 		//sw
 		if (instruction.equals("101011")) {
@@ -44,6 +47,7 @@ public class Control {
 			branch = 0;
 			ALUOp1 = 0;
 			ALUOp0 = 0;
+			jump = 0;
 		}
 		//sh
 		if (instruction.equals("101001")) {
@@ -56,6 +60,7 @@ public class Control {
 			branch = 0;
 			ALUOp1 = 0;
 			ALUOp0 = 0;
+			jump = 0;
 		}
 		//sb
 		if (instruction.equals("101000")) {
@@ -68,6 +73,7 @@ public class Control {
 			branch = 0;
 			ALUOp1 = 0;
 			ALUOp0 = 0;
+			jump = 0;
 		}
 		//beq
 		if (instruction.equals("000100")) {
@@ -80,6 +86,20 @@ public class Control {
 			branch = 1;
 			ALUOp1 = 0;
 			ALUOp0 = 1;
+			jump = 0;
+		}
+		//j
+		if (instruction.equals("000010")) {
+			regDst = 0;
+			ALUSrc = 0;
+			MemToReg = 0;
+			RegWrite = 0;
+			MemRead = 0;
+			MemWrite = 0;
+			branch = 1;
+			ALUOp1 = 0;
+			ALUOp0 = 1;
+			jump = 1;
 		}
 	}
 }

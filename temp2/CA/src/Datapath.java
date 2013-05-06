@@ -46,99 +46,142 @@ public class Datapath {
 		pc = adder.add(pc, 4);
 		String[] z = ins.split(" ");
 		String in = z[0];
-		control.set_controler(in);
-		registerFile.setRregister1(this.findRegByOpcode(z[1]));
-		registerFile.setRregister2(this.findRegByOpcode(z[2]));
-		String resultMux = mux.select(z[2], z[3], control.regDst);
-		registerFile.setWregister(this.findRegByOpcode(resultMux));
-		String r2 = registerFile.rregister2.data;
-		String signExtend = "";
-		if (z[3].charAt(0) == '1') {
-			signExtend = "1111111111111111" + z[3];
+		if (z.length == 2) {
+			control.set_controler("000010");
+			if (z[0].equals("000011")) {
+				long y = pc + 4;
+				String x = Long.toBinaryString(y);
+				this.$ra.data = x;
+			}
+String nPC = Long.toBinaryString(pc);
+nPC=nPC.charAt(0)+nPC.charAt(1)+nPC.charAt(2)+nPC.charAt(3)+z[1]+"00";
+pc=Long.parseLong(nPC, 2);
 		} else {
-			signExtend = "0000000000000000" + z[3];
-		}
-		String resultMux2 = mux.select(r2, signExtend, control.ALUSrc);
-		String signExtendedShiftedByTwo = Long.toBinaryString(Long.parseLong(signExtend, 2) << 2);
-		long resultAdder2 = adder.add(pc, Long.parseLong(signExtendedShiftedByTwo, 2));
-		String aluRes = "";
-		if (in.equals("000000")) {
-			aluRes = alu.performOperation(registerFile.rregister1.data,
-					resultMux2, Integer.parseInt(z[5]));
-			if(Long.parseLong(aluRes,2) == 0) {
-				zero = true;
-				System.out.println(1);
+			control.set_controler(in);
+			registerFile.setRregister1(this.findRegByOpcode(z[1]));
+			registerFile.setRregister2(this.findRegByOpcode(z[2]));
+			String resultMux = mux.select(z[2], z[3], control.regDst);
+			registerFile.setWregister(this.findRegByOpcode(resultMux));
+			String r2 = registerFile.rregister2.data;
+			String signExtend = "";
+
+			if (z[3].charAt(0) == '1') {
+				signExtend = "1111111111111111" + z[3];
+			} else {
+				signExtend = "0000000000000000" + z[3];
 			}
-		}
-		if (in.equals("000100")) {
-			aluRes = alu.performOperation(registerFile.rregister1.data,
-					resultMux2, 100010);
-			if(Long.parseLong(aluRes,2) == 0) {
-				zero = true;
+			String resultMux2 = mux.select(r2, signExtend, control.ALUSrc);
+			String signExtendedShiftedByTwo = Long.toBinaryString(Long
+					.parseLong(signExtend, 2) << 2);
+			long resultAdder2 = adder.add(pc,
+					Long.parseLong(signExtendedShiftedByTwo, 2));
+			String aluRes = "";
+			if (in.equals("000000")) {
+				if (z[5].equals("000000") || z[5].equals("000010")) {
+
+					aluRes = alu.performOperation(z[2], z[4],
+							Integer.parseInt(z[5]), 1);
+					if (Long.parseLong(aluRes, 2) == 0) {
+						zero = true;
+						System.out.println(1);
+					}
+				} else {
+					aluRes = alu.performOperation(registerFile.rregister1.data,
+							resultMux2, Integer.parseInt(z[5]), 0);
+					if (Long.parseLong(aluRes, 2) == 0) {
+						zero = true;
+						System.out.println(1);
+					}
+				}
 			}
-		}
-		String dataRead = "";
-		if (control.MemRead == 1) {
-			if (in.equals("100011")) {
+			if (in.equals("000100")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
-						resultMux2, 100000);
-				if(Long.parseLong(aluRes,2) == 0) {
+						resultMux2, 100010, 0);
+				if (Long.parseLong(aluRes, 2) == 0) {
 					zero = true;
 				}
-				String part0 = aluRes; 
-				String part1 = Long.toBinaryString(Long.parseLong(aluRes,2)+1);
-				String part2 = Long.toBinaryString(Long.parseLong(aluRes,2)+2);
-				String part3 = Long.toBinaryString(Long.parseLong(aluRes,2)+3);
-				dataRead = dm.readData(part0) + dm.readData(part1) + dm.readData(part2) + dm.readData(part3);
 			}
-		}
-		if (control.MemWrite == 1) {
-			if(in.equals("101011")) {
-				aluRes = alu.performOperation(registerFile.rregister1.data,
-						resultMux2, 100000);
-				if(Long.parseLong(aluRes,2) == 0) {
-					zero = true;
+			String dataRead = "";
+			if (control.MemRead == 1) {
+				if (in.equals("100011")) {
+					aluRes = alu.performOperation(registerFile.rregister1.data,
+							resultMux2, 100000, 0);
+					if (Long.parseLong(aluRes, 2) == 0) {
+						zero = true;
+					}
+					String part0 = aluRes;
+					String part1 = Long.toBinaryString(Long
+							.parseLong(aluRes, 2) + 1);
+					String part2 = Long.toBinaryString(Long
+							.parseLong(aluRes, 2) + 2);
+					String part3 = Long.toBinaryString(Long
+							.parseLong(aluRes, 2) + 3);
+					dataRead = dm.readData(part0) + dm.readData(part1)
+							+ dm.readData(part2) + dm.readData(part3);
 				}
-				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
-				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+1), registerFile.rregister1.data.substring(8, 16));
-				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+2), registerFile.rregister1.data.substring(16, 25));
-				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+3), registerFile.rregister1.data.substring(25, 32));
 			}
-			if(in.equals("101001")) {
-				aluRes = alu.performOperation(registerFile.rregister1.data,
-						resultMux2, 100000);
-				if(Long.parseLong(aluRes,2) == 0) {
-					zero = true;
+			if (control.MemWrite == 1) {
+				if (in.equals("101011")) {
+					aluRes = alu.performOperation(registerFile.rregister1.data,
+							resultMux2, 100000, 0);
+					if (Long.parseLong(aluRes, 2) == 0) {
+						zero = true;
+					}
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2)),
+							registerFile.rregister1.data.substring(0, 8));
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2) + 1),
+							registerFile.rregister1.data.substring(8, 16));
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2) + 2),
+							registerFile.rregister1.data.substring(16, 25));
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2) + 3),
+							registerFile.rregister1.data.substring(25, 32));
 				}
-				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(8, 16));
-				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+1), registerFile.rregister1.data.substring(0, 8));
-			}
-			if(in.equals("101000")) {
-				aluRes = alu.performOperation(registerFile.rregister1.data,
-						resultMux2, 100000);
-				if(Long.parseLong(aluRes,2) == 0) {
-					zero = true;
+				if (in.equals("101001")) {
+					aluRes = alu.performOperation(registerFile.rregister1.data,
+							resultMux2, 100000, 0);
+					if (Long.parseLong(aluRes, 2) == 0) {
+						zero = true;
+					}
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2)),
+							registerFile.rregister1.data.substring(8, 16));
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2) + 1),
+							registerFile.rregister1.data.substring(0, 8));
 				}
-				dm.writeData (Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
+				if (in.equals("101000")) {
+					aluRes = alu.performOperation(registerFile.rregister1.data,
+							resultMux2, 100000, 0);
+					if (Long.parseLong(aluRes, 2) == 0) {
+						zero = true;
+					}
+					dm.writeData(
+							Long.toBinaryString(Long.parseLong(aluRes, 2)),
+							registerFile.rregister1.data.substring(0, 8));
+				}
 			}
-		}
-		boolean branch = false;
-		if(control.branch == 0) {
-			branch = true;
-		} else {
-			branch = false;
-		}
-		int controlAdderTwo = 0;
-		if(branch && zero) {
-			controlAdderTwo = 1;
-		}
-		pc = mux.select(pc, resultAdder2, controlAdderTwo);
-		String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
-		if (control.RegWrite == 1) {
-			registerFile.setWdata(resultMux3);
-			this.findRegByOpcode(resultMux).data = registerFile.getWdata();
-			System.out.println("Result of operation: "
-					+ registerFile.wregister.data);
+			boolean branch = false;
+			if (control.branch == 0) {
+				branch = true;
+			} else {
+				branch = false;
+			}
+			int controlAdderTwo = 0;
+			if (branch && zero) {
+				controlAdderTwo = 1;
+			}
+			pc = mux.select(pc, resultAdder2, controlAdderTwo);
+			String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
+			if (control.RegWrite == 1) {
+				registerFile.setWdata(resultMux3);
+				this.findRegByOpcode(resultMux).data = registerFile.getWdata();
+				System.out.println("Result of operation: "
+						+ registerFile.wregister.data);
+			}
 		}
 	}
 
