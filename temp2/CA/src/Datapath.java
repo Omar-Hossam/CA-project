@@ -53,9 +53,10 @@ public class Datapath {
 				String x = Long.toBinaryString(y);
 				this.$ra.data = x;
 			}
-String nPC = Long.toBinaryString(pc);
-nPC=nPC.charAt(0)+nPC.charAt(1)+nPC.charAt(2)+nPC.charAt(3)+z[1]+"00";
-pc=Long.parseLong(nPC, 2);
+			String nPC = Long.toBinaryString(pc);
+			nPC = nPC.charAt(0) + nPC.charAt(1) + nPC.charAt(2) + nPC.charAt(3)
+					+ z[1] + "00";
+			pc = Long.parseLong(nPC, 2);
 		} else {
 			control.set_controler(in);
 			registerFile.setRregister1(this.findRegByOpcode(z[1]));
@@ -80,14 +81,14 @@ pc=Long.parseLong(nPC, 2);
 				if (z[5].equals("000000") || z[5].equals("000010")) {
 
 					aluRes = alu.performOperation(z[2], z[4],
-							Integer.parseInt(z[5]), 1);
+							Integer.parseInt(z[5]));
 					if (Long.parseLong(aluRes, 2) == 0) {
 						zero = true;
 						System.out.println(1);
 					}
 				} else {
 					aluRes = alu.performOperation(registerFile.rregister1.data,
-							resultMux2, Integer.parseInt(z[5]), 0);
+							resultMux2, Integer.parseInt(z[5]));
 					if (Long.parseLong(aluRes, 2) == 0) {
 						zero = true;
 						System.out.println(1);
@@ -96,7 +97,7 @@ pc=Long.parseLong(nPC, 2);
 			}
 			if (in.equals("000100")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
-						resultMux2, 100010, 0);
+						resultMux2, 100010);
 				if (Long.parseLong(aluRes, 2) == 0) {
 					zero = true;
 				}
@@ -105,7 +106,7 @@ pc=Long.parseLong(nPC, 2);
 			if (control.MemRead == 1) {
 				if (in.equals("100011")) {
 					aluRes = alu.performOperation(registerFile.rregister1.data,
-							resultMux2, 100000, 0);
+							resultMux2, 100000);
 					if (Long.parseLong(aluRes, 2) == 0) {
 						zero = true;
 					}
@@ -123,7 +124,7 @@ pc=Long.parseLong(nPC, 2);
 			if (control.MemWrite == 1) {
 				if (in.equals("101011")) {
 					aluRes = alu.performOperation(registerFile.rregister1.data,
-							resultMux2, 100000, 0);
+							resultMux2, 100000);
 					if (Long.parseLong(aluRes, 2) == 0) {
 						zero = true;
 					}
@@ -142,7 +143,7 @@ pc=Long.parseLong(nPC, 2);
 				}
 				if (in.equals("101001")) {
 					aluRes = alu.performOperation(registerFile.rregister1.data,
-							resultMux2, 100000, 0);
+							resultMux2, 100000);
 					if (Long.parseLong(aluRes, 2) == 0) {
 						zero = true;
 					}
@@ -155,7 +156,7 @@ pc=Long.parseLong(nPC, 2);
 				}
 				if (in.equals("101000")) {
 					aluRes = alu.performOperation(registerFile.rregister1.data,
-							resultMux2, 100000, 0);
+							resultMux2, 100000);
 					if (Long.parseLong(aluRes, 2) == 0) {
 						zero = true;
 					}
