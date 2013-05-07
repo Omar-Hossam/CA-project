@@ -63,18 +63,22 @@ public class Datapath {
 		} else {
 			signExtend = "0000000000000000" + z[3];
 		}
+		
 		String resultMux2 = mux.select(r2, signExtend, control.ALUSrc);
+		
 		String signExtendedShiftedByTwo = Long.toBinaryString(Long.parseLong(signExtend, 2) << 2);
 		long resultAdder2 = adder.add(pc, Long.parseLong(signExtendedShiftedByTwo, 2));
+		
 		String aluRes = "";
+		
 		if (in.equals("000000")) {
 			aluRes = alu.performOperation(registerFile.rregister1.data,
 					resultMux2, Integer.parseInt(z[5]));
 			if(Long.parseLong(aluRes,2) == 0) {
 				zero = true;
-				System.out.println(1);
 			}
 		}
+		
 		if (in.equals("000100")) {
 			aluRes = alu.performOperation(registerFile.rregister1.data,
 					resultMux2, 100010);
@@ -82,16 +86,21 @@ public class Datapath {
 				zero = true;
 			}
 		}
+		
 		if(in.equals("001000")){
 			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100000);
 		}
+		
 		if(in.equals("001101")){
 			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100101);
 		}
+		
 		if(in.equals("001100")){
 			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100100);
 		}
+		
 		String dataRead = "";
+		
 		if (control.MemRead == 1) {
 			if (in.equals("100011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
@@ -118,6 +127,7 @@ public class Datapath {
 				dataRead = dm.readData(aluRes);
 			}
 		}
+		
 		if (control.MemWrite == 1) {
 			if(in.equals("101011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
@@ -148,18 +158,25 @@ public class Datapath {
 				dm.writeData (Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
 			}
 		}
+		
 		boolean branch = false;
+		
 		if(control.branch == 0) {
 			branch = true;
 		} else {
 			branch = false;
 		}
+		
 		int controlAdderTwo = 0;
+		
 		if(branch && zero) {
 			controlAdderTwo = 1;
 		}
+		
 		pc = mux.select(pc, resultAdder2, controlAdderTwo);
+		
 		String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
+		
 		if (control.RegWrite == 1) {
 			registerFile.setWdata(resultMux3);
 			this.findRegByOpcode(resultMux).data = registerFile.getWdata();
