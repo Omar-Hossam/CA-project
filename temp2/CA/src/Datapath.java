@@ -91,7 +91,7 @@ public class Datapath {
 
       if (in.equals("000000")) {
     	  if(z[5].equals("000000")||z[5].equals("000010")){
-    		  aluRes = alu.performOperation(registerFile.rregister1.data, z[4], Integer.parseInt(z[5]));
+    		  aluRes = alu.performOperation(registerFile.rregister2.data, z[4], Integer.parseInt(z[5]));
     		  if (Long.parseLong(aluRes, 2) == 0) {
     	          zero = true;
     	        }
