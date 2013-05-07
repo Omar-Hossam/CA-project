@@ -53,6 +53,20 @@ public class Control {
       ALUOp0 = 0;
       jump = 0;
     }
+
+    //lhu
+    if (instruction.equals("100101")) {
+      regDst = 0;
+      ALUSrc = 1;
+      MemToReg = 1;
+      RegWrite = 1;
+      MemRead = 1;
+      MemWrite = 0;
+      branch = 0;
+      ALUOp1 = 0;
+      ALUOp0 = 0;
+      jump = 0;
+    }
     
     //sw
     if (instruction.equals("101011")) {
@@ -84,6 +98,20 @@ public class Control {
 	
 	//lbu
 	if (instruction.equals("100100")) {
+		regDst = 0;
+		ALUSrc = 1;
+		MemToReg = 1;
+		RegWrite = 1;
+		MemRead = 1;
+		MemWrite = 0;
+		branch = 0;
+		ALUOp1 = 0;
+		ALUOp0 = 0;
+		jump = 0;
+	}
+	
+	//lui
+	if (instruction.equals("001111")) {
 		regDst = 0;
 		ALUSrc = 1;
 		MemToReg = 1;
