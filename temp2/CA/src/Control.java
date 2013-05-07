@@ -1,6 +1,4 @@
-public class Control {
-
-  
+public class Control {  
   int regDst;
   int ALUSrc;
   int MemToReg;
@@ -70,6 +68,34 @@ public class Control {
       jump = 0;
     }
     
+    //lb
+	if (instruction.equals("100000")) {
+		regDst = 0;
+		ALUSrc = 1;
+		MemToReg = 1;
+		RegWrite = 1;
+		MemRead = 1;
+		MemWrite = 0;
+		branch = 0;
+		ALUOp1 = 0;
+		ALUOp0 = 0;
+		jump = 0;
+	}
+	
+	//lbu
+	if (instruction.equals("100100")) {
+		regDst = 0;
+		ALUSrc = 1;
+		MemToReg = 1;
+		RegWrite = 1;
+		MemRead = 1;
+		MemWrite = 0;
+		branch = 0;
+		ALUOp1 = 0;
+		ALUOp0 = 0;
+		jump = 0;
+	}
+	
     //sh
     if (instruction.equals("101001")) {
       regDst = 0;
@@ -153,6 +179,21 @@ public class Control {
       ALUOp0 = 1;
       jump = 0;
     }
+
+    //bne
+    if (instruction.equals("000101")) {
+      regDst = 0;
+      ALUSrc = 0;
+      MemToReg = 0;
+      RegWrite = 0;
+      MemRead = 0;
+      MemWrite = 0;
+      branch = 1;
+      ALUOp1 = 0;
+      ALUOp0 = 1;
+      jump = 0;
+    }
+
     //j
     if (instruction.equals("000010")) {
       regDst = 0;
@@ -167,5 +208,4 @@ public class Control {
       jump = 1;
     }
   }
-
 }
