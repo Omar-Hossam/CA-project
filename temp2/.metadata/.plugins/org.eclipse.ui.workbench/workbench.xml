@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="37" version="2.0">
+<workbench progressCount="38" version="2.0">
 <workbenchAdvisor/>
 <window height="728" maximized="true" width="1024" x="150" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -44,15 +44,15 @@
 </editorArea>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mux.java" partName="Mux.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Mux.java" title="Mux.java" tooltip="CA/src/Mux.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/Mux.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="135" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="18" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IM.java" partName="IM.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/IM.java" title="IM.java" tooltip="CA/src/IM.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/IM.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="267" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Registers.java" partName="Registers.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Registers.java" title="Registers.java" tooltip="CA/src/Registers.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Registers.java" partName="Registers.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Registers.java" title="Registers.java" tooltip="CA/src/Registers.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/Registers.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="371" selectionTopPixel="101"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="271" selectionTopPixel="101"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="reg.java" partName="reg.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/reg.java" title="reg.java" tooltip="CA/src/reg.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/reg.java"/>
@@ -60,7 +60,7 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ALU.java" partName="ALU.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/ALU.java" title="ALU.java" tooltip="CA/src/ALU.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/ALU.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="284" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="322" selectionTopPixel="17"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DM.java" partName="DM.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/DM.java" title="DM.java" tooltip="CA/src/DM.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/DM.java"/>
@@ -68,11 +68,11 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Control.java" partName="Control.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Control.java" title="Control.java" tooltip="CA/src/Control.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/Control.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="215" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datapath.java" partName="Datapath.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Datapath.java" title="Datapath.java" tooltip="CA/src/Datapath.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datapath.java" partName="Datapath.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Datapath.java" title="Datapath.java" tooltip="CA/src/Datapath.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/Datapath.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1058" selectionTopPixel="1346"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2793" selectionTopPixel="1601"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Adder.java" partName="Adder.java" path="C:/Users/3omar/Documents/Github/CA-project/temp2/CA/src/Adder.java" title="Adder.java" tooltip="CA/src/Adder.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CA/src/Adder.java"/>
@@ -83,9 +83,10 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (2 items)"/>
+<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Errors"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="64" org.eclipse.ui.ide.markerType="94" org.eclipse.ui.ide.pathField="124" org.eclipse.ui.ide.resourceField="94" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
+<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -283,182 +284,165 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Registers.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Datapath.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Mux.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Adder.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/IM.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Registers.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/reg.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/ALU.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/DM.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Control.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Mux.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Adder.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/IM.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Registers.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/reg.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/ALU.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/DM.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Datapath.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Mux.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Adder.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/IM.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Registers.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/reg.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/ALU.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/DM.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/CA/src/Control.java"/>
 </editors>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="693" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="1294" y="0"/>
-</item>
-<item historyLabel="Registers.java" index="0">
-<position info="not_deleted" x="371" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="1294" y="0"/>
-</item>
-<item historyLabel="Registers.java" index="0">
-<position info="not_deleted" x="371" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="1294" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="895" y="0"/>
-</item>
-<item historyLabel="Registers.java" index="0">
-<position info="not_deleted" x="371" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="895" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="1356" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="1354" y="0"/>
-</item>
-<item historyLabel="Mux.java" index="2">
-<position info="not_deleted" x="135" y="0"/>
-</item>
-<item historyLabel="Adder.java" index="3">
-<position info="not_deleted" x="71" y="0"/>
-</item>
-<item historyLabel="IM.java" index="4">
-<position info="not_deleted" x="267" y="0"/>
-</item>
-<item historyLabel="Registers.java" index="5">
-<position info="not_deleted" x="371" y="0"/>
-</item>
-<item historyLabel="reg.java" index="6">
-<position info="not_deleted" x="90" y="0"/>
-</item>
-<item historyLabel="ALU.java" index="7">
-<position info="not_deleted" x="284" y="0"/>
-</item>
-<item historyLabel="DM.java" index="8">
-<position info="not_deleted" x="334" y="0"/>
-</item>
-<item historyLabel="Control.java" index="9">
-<position info="not_deleted" x="398" y="0"/>
-</item>
-<item historyLabel="ALU.java" index="7">
-<position info="not_deleted" x="136" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="1">
-<position info="not_deleted" x="1356" y="0"/>
-</item>
-<item historyLabel="Control.java" index="9">
-<position info="not_deleted" x="398" y="0"/>
-</item>
-<item historyLabel="ALU.java" index="7">
-<position info="not_deleted" x="136" y="0"/>
-</item>
-<item historyLabel="Control.java" index="9">
-<position info="not_deleted" x="398" y="0"/>
-</item>
-<item historyLabel="ALU.java" index="7">
-<position info="not_deleted" x="284" y="0"/>
-</item>
-<item historyLabel="Control.java" index="9">
-<position info="not_deleted" x="25" y="6"/>
-</item>
-<item historyLabel="Mux.java" index="10">
-<position info="not_deleted" x="135" y="0"/>
-</item>
-<item historyLabel="Adder.java" index="11">
-<position info="not_deleted" x="71" y="0"/>
-</item>
-<item historyLabel="IM.java" index="12">
-<position info="not_deleted" x="267" y="0"/>
-</item>
-<item historyLabel="Registers.java" index="13">
-<position info="not_deleted" x="371" y="0"/>
-</item>
-<item historyLabel="reg.java" index="14">
-<position info="not_deleted" x="90" y="0"/>
-</item>
-<item historyLabel="ALU.java" index="15">
-<position info="not_deleted" x="284" y="0"/>
-</item>
-<item historyLabel="DM.java" index="16">
-<position info="not_deleted" x="334" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="17">
-<position info="not_deleted" x="1356" y="0"/>
-</item>
-<item historyLabel="Control.java" index="9">
-<position info="not_deleted" x="45" y="0"/>
-</item>
-<item historyLabel="Control.java" index="9">
-<position info="not_deleted" x="215" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="17">
-<position info="not_deleted" x="1356" y="0"/>
-</item>
-<item historyLabel="Mux.java" index="18">
-<position info="not_deleted" x="135" y="0"/>
-</item>
-<item historyLabel="Adder.java" index="19">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="IM.java" index="20">
-<position info="not_deleted" x="267" y="0"/>
-</item>
-<item historyLabel="Registers.java" index="21">
-<position info="not_deleted" x="371" y="0"/>
-</item>
-<item historyLabel="reg.java" index="22">
-<position info="not_deleted" x="90" y="0"/>
-</item>
-<item historyLabel="ALU.java" index="23">
-<position info="not_deleted" x="284" y="0"/>
-</item>
-<item historyLabel="DM.java" index="24">
-<position info="not_deleted" x="334" y="0"/>
-</item>
-<item historyLabel="Control.java" index="25">
-<position info="not_deleted" x="215" y="0"/>
-</item>
-<item historyLabel="Adder.java" index="19">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Datapath.java" index="17">
-<position info="not_deleted" x="584" y="0"/>
-</item>
-<item historyLabel="Adder.java" index="19">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Adder.java" index="19">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item active="true" historyLabel="Datapath.java" index="17">
+<item historyLabel="Datapath.java" index="0">
 <position info="not_deleted" x="1058" y="0"/>
+</item>
+<item historyLabel="Mux.java" index="1">
+<position info="not_deleted" x="135" y="0"/>
+</item>
+<item historyLabel="IM.java" index="2">
+<position info="not_deleted" x="267" y="0"/>
+</item>
+<item historyLabel="Registers.java" index="3">
+<position info="not_deleted" x="371" y="0"/>
+</item>
+<item historyLabel="reg.java" index="4">
+<position info="not_deleted" x="90" y="0"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="474" y="0"/>
+</item>
+<item historyLabel="DM.java" index="6">
+<position info="not_deleted" x="334" y="0"/>
+</item>
+<item historyLabel="Control.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Adder.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="Control.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Control.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DM.java" index="6">
+<position info="not_deleted" x="334" y="0"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="474" y="0"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Registers.java" index="3">
+<position info="not_deleted" x="371" y="0"/>
+</item>
+<item historyLabel="reg.java" index="4">
+<position info="not_deleted" x="90" y="0"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DM.java" index="6">
+<position info="not_deleted" x="334" y="0"/>
+</item>
+<item historyLabel="Control.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="Adder.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IM.java" index="2">
+<position info="not_deleted" x="267" y="0"/>
+</item>
+<item historyLabel="Mux.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="446" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="299" y="6"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="299" y="6"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="414" y="0"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="344" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position/>
+</item>
+<item historyLabel="Control.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position info="not_deleted" x="1130" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position info="not_deleted" x="3250" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position info="not_deleted" x="2793" y="0"/>
+</item>
+<item historyLabel="Adder.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ALU.java" index="5">
+<position info="not_deleted" x="322" y="0"/>
+</item>
+<item historyLabel="IM.java" index="2">
+<position info="not_deleted" x="267" y="0"/>
+</item>
+<item historyLabel="Mux.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="Control.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DM.java" index="6">
+<position info="not_deleted" x="334" y="0"/>
+</item>
+<item historyLabel="Datapath.java" index="0">
+<position info="not_deleted" x="2793" y="0"/>
+</item>
+<item historyLabel="Adder.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="reg.java" index="4">
+<position info="not_deleted" x="90" y="0"/>
+</item>
+<item active="true" historyLabel="Registers.java" index="3">
+<position info="not_deleted" x="371" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -466,6 +450,14 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="bottom"/>
+<trimItem IMemento.internal.id="right"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@129162d"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
