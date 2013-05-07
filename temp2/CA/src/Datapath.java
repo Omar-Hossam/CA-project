@@ -60,7 +60,7 @@ public class Datapath {
       nPC = nPC.charAt(0) + nPC.charAt(1) + nPC.charAt(2) + nPC.charAt(3)
           + z[1] + "00";
       String w=Long.toBinaryString(pc);
-      String q = mux.select(w, nPC, control.branch);
+      String q = mux.select(w, nPC, control.jump);
       long PC=Long.parseLong(q);
       pc=PC;
      
@@ -91,7 +91,7 @@ public class Datapath {
 
       if (in.equals("000000")) {
     	  if(z[5].equals("000000")||z[5].equals("000010")){
-    		  aluRes = alu.performOperation(z[2], z[4], Integer.parseInt(z[5]));
+    		  aluRes = alu.performOperation(registerFile.rregister1.data, z[4], Integer.parseInt(z[5]));
     		  if (Long.parseLong(aluRes, 2) == 0) {
     	          zero = true;
     	        }
