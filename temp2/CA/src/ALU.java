@@ -1,5 +1,6 @@
 public class ALU {
 
+
   public String performOperation(String data1, String data2, int fifi){
     
 
@@ -94,5 +95,6 @@ public class ALU {
 
     return "";
   }
+
 
 }

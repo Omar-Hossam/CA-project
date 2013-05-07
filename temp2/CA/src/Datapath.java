@@ -303,4 +303,5 @@ public class Datapath {
     p.performInstruction("100011 10010 10010 000000000000000001");
     p.performInstruction("001000 10001 10010 000000000001100100");
   }
+
 }

@@ -1,4 +1,5 @@
 public class Control {
+
   
   int regDst;
   int ALUSrc;
@@ -162,4 +163,5 @@ public class Control {
       jump = 1;
     }
   }
+
 }
