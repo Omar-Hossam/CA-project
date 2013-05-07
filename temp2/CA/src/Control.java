@@ -51,6 +51,21 @@ public class Control {
       branch = 0;
       ALUOp1 = 0;
       ALUOp0 = 0;
+      jump = 0;
+    }
+
+    //lhu
+    if (instruction.equals("100101")) {
+      regDst = 0;
+      ALUSrc = 1;
+      MemToReg = 1;
+      RegWrite = 1;
+      MemRead = 1;
+      MemWrite = 0;
+      branch = 0;
+      ALUOp1 = 0;
+      ALUOp0 = 0;
+      jump = 0;
     }
     
     //sw
@@ -78,6 +93,7 @@ public class Control {
 		branch = 0;
 		ALUOp1 = 0;
 		ALUOp0 = 0;
+		jump = 0;
 	}
 	
 	//lbu
@@ -91,6 +107,7 @@ public class Control {
 		branch = 0;
 		ALUOp1 = 0;
 		ALUOp0 = 0;
+		jump = 0;
 	}
 	
 	//lui
@@ -104,6 +121,7 @@ public class Control {
 		branch = 0;
 		ALUOp1 = 0;
 		ALUOp0 = 0;
+		jump = 0;
 	}
 	
     //sh
@@ -145,6 +163,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 1;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //ori
@@ -158,6 +177,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 1;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //andi
@@ -171,6 +191,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 1;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //beq
@@ -186,7 +207,21 @@ public class Control {
       ALUOp0 = 1;
       jump = 0;
     }
-   
+
+    //bne
+    if (instruction.equals("000101")) {
+      regDst = 0;
+      ALUSrc = 0;
+      MemToReg = 0;
+      RegWrite = 0;
+      MemRead = 0;
+      MemWrite = 0;
+      branch = 1;
+      ALUOp1 = 0;
+      ALUOp0 = 1;
+      jump = 0;
+    }
+
     //j
     if (instruction.equals("000010")) {
       regDst = 0;
