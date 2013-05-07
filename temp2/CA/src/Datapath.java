@@ -56,7 +56,8 @@ public class Datapath {
 			String nPC = Long.toBinaryString(pc);
 			nPC = nPC.charAt(0) + nPC.charAt(1) + nPC.charAt(2) + nPC.charAt(3)
 					+ z[1] + "00";
-			pc = Long.parseLong(nPC, 2);
+			String q = mux.select(pc+"", nPC,control.branch);
+			pc=Integer.parseInt(q);
 		} else {
 			control.set_controler(in);
 			registerFile.setRregister1(this.findRegByOpcode(z[1]));
