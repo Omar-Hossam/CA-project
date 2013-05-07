@@ -1,4 +1,5 @@
 public class Datapath {
+	
 	long pc = 0;
 	Adder adder = new Adder();
 	Control control = new Control();
@@ -44,32 +45,40 @@ public class Datapath {
 	public void performInstruction(String ins) {
 		// String Instruction = im.getInstruction(pc);
 		pc = adder.add(pc, 4);
+		
 		String[] z = ins.split(" ");
 		String in = z[0];
+		
 		control.set_controler(in);
+		
 		registerFile.setRregister1(this.findRegByOpcode(z[1]));
 		registerFile.setRregister2(this.findRegByOpcode(z[2]));
 		String resultMux = mux.select(z[2], z[3], control.regDst);
 		registerFile.setWregister(this.findRegByOpcode(resultMux));
 		String r2 = registerFile.rregister2.data;
+		
 		String signExtend = "";
 		if (z[3].charAt(0) == '1') {
 			signExtend = "1111111111111111" + z[3];
 		} else {
 			signExtend = "0000000000000000" + z[3];
 		}
+		
 		String resultMux2 = mux.select(r2, signExtend, control.ALUSrc);
+		
 		String signExtendedShiftedByTwo = Long.toBinaryString(Long.parseLong(signExtend, 2) << 2);
 		long resultAdder2 = adder.add(pc, Long.parseLong(signExtendedShiftedByTwo, 2));
+		
 		String aluRes = "";
+		
 		if (in.equals("000000")) {
 			aluRes = alu.performOperation(registerFile.rregister1.data,
 					resultMux2, Integer.parseInt(z[5]));
 			if(Long.parseLong(aluRes,2) == 0) {
 				zero = true;
-				System.out.println(1);
 			}
 		}
+		
 		if (in.equals("000100")) {
 			aluRes = alu.performOperation(registerFile.rregister1.data,
 					resultMux2, 100010);
@@ -77,7 +86,21 @@ public class Datapath {
 				zero = true;
 			}
 		}
+		
+		if(in.equals("001000")){
+			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100000);
+		}
+		
+		if(in.equals("001101")){
+			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100101);
+		}
+		
+		if(in.equals("001100")){
+			aluRes = alu.performOperation(registerFile.rregister1.data, resultMux2, 100100);
+		}
+		
 		String dataRead = "";
+		
 		if (control.MemRead == 1) {
 			if (in.equals("100011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
@@ -91,7 +114,20 @@ public class Datapath {
 				String part3 = Long.toBinaryString(Long.parseLong(aluRes,2)+3);
 				dataRead = dm.readData(part0) + dm.readData(part1) + dm.readData(part2) + dm.readData(part3);
 			}
+			if (in.equals("100001")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				String part0 = aluRes; 
+				String part1 = Long.toBinaryString(Long.parseLong(aluRes,2)+1);
+				dataRead = dm.readData(part0) + dm.readData(part1);
+			}
+			if (in.equals("001100")){
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				dataRead = dm.readData(aluRes);
+			}
 		}
+		
 		if (control.MemWrite == 1) {
 			if(in.equals("101011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
@@ -122,18 +158,25 @@ public class Datapath {
 				dm.writeData (Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
 			}
 		}
+		
 		boolean branch = false;
+		
 		if(control.branch == 0) {
 			branch = true;
 		} else {
 			branch = false;
 		}
+		
 		int controlAdderTwo = 0;
+		
 		if(branch && zero) {
 			controlAdderTwo = 1;
 		}
+		
 		pc = mux.select(pc, resultAdder2, controlAdderTwo);
+		
 		String resultMux3 = mux.select(aluRes, dataRead, control.MemToReg);
+		
 		if (control.RegWrite == 1) {
 			registerFile.setWdata(resultMux3);
 			this.findRegByOpcode(resultMux).data = registerFile.getWdata();
@@ -183,5 +226,6 @@ public class Datapath {
 		p.performInstruction("000000 10001 10010 10011 00000 100111");
 		p.performInstruction("101011 10010 10010 000000000000000001");
 		p.performInstruction("100011 10010 10010 000000000000000001");
+		p.performInstruction("001000 10001 10010 000000000001100100");
 	}
 }
