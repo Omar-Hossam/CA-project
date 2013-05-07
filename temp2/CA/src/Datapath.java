@@ -79,6 +79,7 @@ public class Datapath {
 		}
 		String dataRead = "";
 		if (control.MemRead == 1) {
+			//lw
 			if (in.equals("100011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
 						resultMux2, 100000);
@@ -91,8 +92,32 @@ public class Datapath {
 				String part3 = Long.toBinaryString(Long.parseLong(aluRes,2)+3);
 				dataRead = dm.readData(part0) + dm.readData(part1) + dm.readData(part2) + dm.readData(part3);
 			}
+			//lbu
+			if(in.equals("100100")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				if(Long.parseLong(aluRes,2) == 0) {
+					zero = true;
+				}
+				dataRead = "000000000000000000000000" + dm.readData(aluRes);
+			}
+			//lb
+			if(in.equals("100000")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100000);
+				if(Long.parseLong(aluRes,2) == 0) {
+					zero = true;
+				}
+				String partial = dm.readData(aluRes);
+				if (partial.charAt(0) == '0') {
+					dataRead = "000000000000000000000000" + dm.readData(aluRes);
+				} else {
+					dataRead = "111111111111111111111111" + dm.readData(aluRes);
+				}
+			}
 		}
 		if (control.MemWrite == 1) {
+			//sw
 			if(in.equals("101011")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
 						resultMux2, 100000);
@@ -104,6 +129,7 @@ public class Datapath {
 				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+2), registerFile.rregister1.data.substring(16, 25));
 				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+3), registerFile.rregister1.data.substring(25, 32));
 			}
+			//sh
 			if(in.equals("101001")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
 						resultMux2, 100000);
@@ -113,13 +139,14 @@ public class Datapath {
 				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(8, 16));
 				dm.writeData(Long.toBinaryString(Long.parseLong(aluRes,2)+1), registerFile.rregister1.data.substring(0, 8));
 			}
+			//sb
 			if(in.equals("101000")) {
 				aluRes = alu.performOperation(registerFile.rregister1.data,
 						resultMux2, 100000);
 				if(Long.parseLong(aluRes,2) == 0) {
 					zero = true;
 				}
-				dm.writeData (Long.toBinaryString(Long.parseLong(aluRes,2)), registerFile.rregister1.data.substring(0, 8));
+				dm.writeData (aluRes, registerFile.rregister1.data.substring(0, 8));
 			}
 		}
 		boolean branch = false;
