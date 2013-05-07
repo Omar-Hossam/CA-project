@@ -1,4 +1,5 @@
 public class Control {
+	
 	int regDst;
 	int ALUSrc;
 	int MemToReg;
@@ -8,7 +9,9 @@ public class Control {
 	int branch;
 	int ALUOp1;
 	int ALUOp0;
+	
 	public void set_controler(String instruction){
+		
 		//R-type
 		if (instruction.equals("000000")){
 			regDst = 1;
@@ -21,6 +24,7 @@ public class Control {
 			ALUOp1 = 1;
 			ALUOp0 = 0;
 		}
+		
 		//lw
 		if (instruction.equals("100011")) {
 			regDst = 0;
@@ -33,6 +37,7 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		
 		//lh
 		if (instruction.equals("100001")) {
 			regDst = 0;
@@ -45,6 +50,7 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		
 		//sw
 		if (instruction.equals("101011")) {
 			regDst = 0;
@@ -57,6 +63,7 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		
 		//sh
 		if (instruction.equals("101001")) {
 			regDst = 0;
@@ -69,6 +76,7 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		
 		//sb
 		if (instruction.equals("101000")) {
 			regDst = 0;
@@ -81,6 +89,7 @@ public class Control {
 			ALUOp1 = 0;
 			ALUOp0 = 0;
 		}
+		
 		//addi
 		if (instruction.equals("001000")){
 			regDst = 0;
@@ -93,6 +102,7 @@ public class Control {
 			ALUOp1 = 1;
 			ALUOp0 = 0;
 		}
+		
 		//ori
 		if (instruction.equals("001101")){
 			regDst = 0;
@@ -105,6 +115,7 @@ public class Control {
 			ALUOp1 = 1;
 			ALUOp0 = 0;
 		}
+		
 		//andi
 		if (instruction.equals("001100")){
 			regDst = 0;
@@ -116,6 +127,19 @@ public class Control {
 			branch = 0;
 			ALUOp1 = 1;
 			ALUOp0 = 0;
+		}
+		
+		//beq
+		if (instruction.equals("000100")) {
+			regDst = 0;
+			ALUSrc = 0;
+			MemToReg = 0;
+			RegWrite = 0;
+			MemRead = 0;
+			MemWrite = 0;
+			branch = 1;
+			ALUOp1 = 0;
+			ALUOp0 = 1;
 		}
 	}
 }
