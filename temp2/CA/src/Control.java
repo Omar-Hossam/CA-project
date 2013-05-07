@@ -53,6 +53,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 0;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //sw
@@ -108,6 +109,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 1;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //ori
@@ -121,6 +123,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 1;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //andi
@@ -134,6 +137,7 @@ public class Control {
       branch = 0;
       ALUOp1 = 1;
       ALUOp0 = 0;
+      jump = 0;
     }
     
     //beq
