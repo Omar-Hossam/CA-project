@@ -93,6 +93,19 @@ public class Control {
 		ALUOp0 = 0;
 	}
 	
+	//lui
+	if (instruction.equals("001111")) {
+		regDst = 0;
+		ALUSrc = 1;
+		MemToReg = 1;
+		RegWrite = 1;
+		MemRead = 1;
+		MemWrite = 0;
+		branch = 0;
+		ALUOp1 = 0;
+		ALUOp0 = 0;
+	}
+	
     //sh
     if (instruction.equals("101001")) {
       regDst = 0;
