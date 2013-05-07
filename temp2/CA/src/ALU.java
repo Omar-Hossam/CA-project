@@ -52,7 +52,12 @@ public class ALU {
     		temp = Long.parseLong(data1,2) & Long.parseLong(data2,2);
     		String andValue = Long.toBinaryString(temp);
     		return andValue;
-
+    		
+    	case 101010:
+    		if(Long.parseLong(data1,2) < Long.parseLong(data2,2)){
+    			return "1";
+    		}
+    		return "0";
     }
     
     return "";
