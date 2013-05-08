@@ -106,7 +106,6 @@ public class ALU {
     		}
     		return binaryValue;  
 
-
     	case 101010:
     		if(Long.parseLong(data1,2) < Long.parseLong(data2,2)){
     			return "1";
