@@ -6,7 +6,7 @@ public class IM {
 		pc = pc / 4;
 		return instructions.get(pc);
 	}
-	public void set(ArrayList<String> a){
-		this.instructions = a; 
+	public void addIns(String temp){
+		this.instructions.add(temp); 
 	}
 }

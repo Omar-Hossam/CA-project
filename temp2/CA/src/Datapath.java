@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Datapath {
 
 	long pc = 0;
@@ -41,7 +48,7 @@ public class Datapath {
 	reg $fp = new reg();
 	reg $ra = new reg();
 	boolean zero = false;
-
+	ArrayList<String> instructions = new ArrayList<String>();
 	public void performInstruction(String ins) {
 		// String Instruction = im.getInstruction(pc);
 		pc = adder.add(pc, 4);
@@ -56,12 +63,18 @@ public class Datapath {
 				String x = Long.toBinaryString(y);
 				this.$ra.data = x;
 			}
+			else {
+				if (z[0].equals("001000")){
+					reg x = findRegByOpcode(z[1]);
+					z[1]=x.data;
+				}
+			}
 			String nPC = Long.toBinaryString(pc);
 			nPC = nPC.charAt(0) + nPC.charAt(1) + nPC.charAt(2) + nPC.charAt(3)
 			+ z[1] + "00";
 			String w=Long.toBinaryString(pc);
 			String q = mux.select(w, nPC, control.jump);
-			long PC=Long.parseLong(q);
+			long PC=Long.parseLong(q, 2);
 			pc=PC;
 
 		} else {
@@ -302,44 +315,152 @@ public class Datapath {
 		}
 	}
 
-	public reg findRegByOpcode(String s) {
-		if (s.equals("10001")) {
+	public reg findRegByOpcode(String s){
+		if(s.equals("01001")){
+			return this.$t1;
+		} 
+		else if(s.equals("01010")){
+				return this.$t2;
+			}
+		else if(s.equals("01011")){
+				return this.$t3 ;
+		}
+		else if(s.equals("00000")){
+			return this.$zero ;
+		}
+		else if(s.equals("00010")){
+			return this.$v0;
+		}
+		else if(s.equals("00011")){
+			return this.$v1;
+			
+		}
+		else if(s.equals("00100")){
+			return this.$a0;
+
+		}
+		else if(s.equals("00101")){
+			return this.$a1;
+
+		}
+		else if(s.equals("00110")){
+			return this.$a2;
+		
+		}
+		else if(s.equals("00111")){
+			return this.$a3;
+			
+		}
+		else if(s.equals("01000")){
+			return this.$t0;
+		}
+		else if(s.equals("01100")){
+			return this.$t4;
+		}
+		else if(s.equals("01101")){
+			return this.$t5;
+		}
+		else if(s.equals("01110")){
+			return this.$t6;
+		}
+		else if(s.equals("01111")){
+			return this.$t7;
+			
+		}
+		else if(s.equals("10000")){
+			return this.$s0;
+		}
+		else if(s.equals("10001")){
 			return this.$s1;
-		} else if (s.equals("10010")) {
+		}
+		else if(s.equals("10010")){
 			return this.$s2;
-		} else {
+		}
+		else if(s.equals("10011")){
 			return this.$s3;
 		}
-	}
-
-	public String translate(String x) {
-		String result = "";
-		String[] a;
-		a = x.split(" ");
-		if (a[0].equals("ADD")) {
-			result += "0000000";
+		else if(s.equals("10100")){
+			return this.$s4;
 		}
-		result += getRegOpcode(a[2]);
-		result += getRegOpcode(a[3]);
-		result += getRegOpcode(a[1]);
-		return result;
-	}
-
-	public String getRegOpcode(String a) {
-		if (a.equals("$s1")) {
-			return "10001";
-		} else if (a.equals("$s2")) {
-			return "10010";
-		} else {
-			/* $s3 */return "10011";
+		else if(s.equals("10101")){
+			return this.$s5;
 		}
+		else if(s.equals("10110")){
+			return this.$s6;
+		}
+		else if(s.equals("10111")){
+			return this.$s7;
+		}
+		else if(s.equals("11000")){
+			return this.$t8;
+		}
+		else if(s.equals("11001")){
+			return this.$t9;
+		}
+		else if(s.equals("11100")){
+			return this.$gp;
+		}
+		else if(s.equals("11101")){
+			return this.$sp;
+		}
+		else if(s.equals("11111")){
+			return this.$ra;
+		}
+		return null;
 	}
-
+	
+	public Label setLabels(String line, CA piky, int counter) {
+		String temp = piky.checkLabel(line);
+		if (temp.equals("label exists")) {
+			String s [] = line.split(" ");
+			String tempo = "";
+			for(int i = 1; i<s.length;i++) {
+				if(i == s.length-1) {
+					tempo = tempo+s[i];
+				} else {
+					tempo = tempo+s[i]+" ";
+				}
+			}
+			instructions.add(tempo);
+			return new Label(s[0].substring(0, s[0].length()-1), counter);
+		}
+		instructions.add(line);
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		Datapath p = new Datapath();
 		p.$s1.set("0000000000000000000000000000011");
 		p.$s2.set("10000000000000000000000000000010");
-		p.performInstruction("000000 10010 10001 10011 00000 101010");
+		//p.performInstruction("000000 10010 10001 10011 00000 101010");
+		CA piky = new CA();
+		String sCurrentLine; 
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader("C:\\testing.txt"));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		int counterFile = 0;
+		ArrayList<Label> labels = new ArrayList<Label>();
+		try {
+			while ((sCurrentLine = br.readLine()) != null) {
+				Label tempLabel = p.setLabels(sCurrentLine, piky, counterFile);
+				if (tempLabel != null) {
+					labels.add(tempLabel);
+				}
+				counterFile++;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int timo = 0; timo<p.instructions.size(); timo++) {
+			String tempIsntruction = piky.translate(p.instructions.get(timo), labels);
+			p.im.addIns(tempIsntruction);
+		}
+		
 		//p.performInstruction("101011 10001 10010 000000000000000001");
 		//p.performInstruction("001111 10001 10011 100000000000000001");
 		//p.performInstruction("000000 xxxxx 10010 10011 00011 000010");
