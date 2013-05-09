@@ -207,6 +207,20 @@ public class Control {
       ALUOp0 = 1;
       jump = 0;
     }
+    
+    //blt
+    if (instruction.equals("111111")) {
+        regDst = 0;
+        ALUSrc = 0;
+        MemToReg = 0;
+        RegWrite = 0;
+        MemRead = 0;
+        MemWrite = 0;
+        branch = 1;
+        ALUOp1 = 0;
+        ALUOp0 = 1;
+        jump = 0;
+      }
 
     //bne
     if (instruction.equals("000101")) {

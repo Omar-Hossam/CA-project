@@ -202,6 +202,38 @@ public class CA {
 			rt = s[3];
 			opcode = "000000" + " " + rs + " " + rt + " " + rd + " " + shamt
 					+ " " + x;
+		} else if (s[0].equals("move")) {
+			x = "100000";
+			shamt = "00000";
+			rd = s[1];
+			rt = s[2];
+			opcode = "000000" + " " + rt + " " + "00010 " + rd + " " + shamt
+					+ " " + x;
+		} else if (s[0].equals("blt")) {
+			x = "111111";
+			rs = s[1];
+			rt = s[2];
+			int j = 0;
+			for (int i = 0; i < (labels).size(); i++) {
+				Label l = (Label) labels.get(i);
+				if (l.name.equals(s[3])) {
+					j = l.place;
+					break;
+				}
+			}
+			int offset = (j - (this.counter + 1));
+			String tempString = Integer.toBinaryString(offset);
+			if (tempString.length() > 16) {
+				int counter2 = tempString.length() - 16;
+				tempString = tempString
+						.substring(counter2, tempString.length());
+			}
+			counter = 16 - tempString.length();
+			for (int i = 0; i < counter; i++) {
+				tempString = '0' + tempString;
+			}
+			opcode = x + " " + rs + " " + rt + " " + tempString;
+
 		} else if (s[0].equals("ori")) {
 			x = "001101";
 			rt = s[1];
@@ -231,16 +263,17 @@ public class CA {
 					break;
 				}
 			}
-			int offset = (j - (this.counter+1));
-			String tempString = Integer.toBinaryString(offset); 
+			int offset = (j - (this.counter + 1));
+			String tempString = Integer.toBinaryString(offset);
 			if (tempString.length() > 16) {
-    			int counter2 = tempString.length() - 16;
-    			tempString = tempString.substring(counter2, tempString.length());
-    		}
-    		counter = 16 - tempString.length();
-    		for ( int i = 0; i< counter; i++) {
-    			tempString = '0' + tempString;
-    		}
+				int counter2 = tempString.length() - 16;
+				tempString = tempString
+						.substring(counter2, tempString.length());
+			}
+			counter = 16 - tempString.length();
+			for (int i = 0; i < counter; i++) {
+				tempString = '0' + tempString;
+			}
 			opcode = x + " " + rs + " " + rt + " " + tempString;
 
 		} else if (s[0].equals("bne")) {
@@ -255,18 +288,19 @@ public class CA {
 					break;
 				}
 			}
-			int offset = (j - (this.counter+1));
+			int offset = (j - (this.counter + 1));
 			String tempString = Integer.toBinaryString(offset);
 			if (tempString.length() > 16) {
-    			int counter2 = tempString.length() - 16;
-    			tempString = tempString.substring(counter2, tempString.length());
-    		}
-    		counter = 16 - tempString.length();
-    		for ( int i = 0; i< counter; i++) {
-    			tempString = '0' + tempString;
-    		}
+				int counter2 = tempString.length() - 16;
+				tempString = tempString
+						.substring(counter2, tempString.length());
+			}
+			counter = 16 - tempString.length();
+			for (int i = 0; i < counter; i++) {
+				tempString = '0' + tempString;
+			}
 			opcode = x + " " + rs + " " + rt + " " + tempString;
-			
+
 		} else if (s[0].equals("j")) {
 			x = "000010 ";
 			int j = 0;
@@ -280,9 +314,9 @@ public class CA {
 			}
 			String y = Integer.toBinaryString(j);
 			int count0 = 26 - y.length();
-    		for ( int i = 0; i< count0; i++) {
-    			y = '0' + y;
-    		}
+			for (int i = 0; i < count0; i++) {
+				y = '0' + y;
+			}
 			opcode = x + y;
 		} else if (s[0].equals("jal")) {
 			x = "000011";
@@ -297,9 +331,9 @@ public class CA {
 			}
 			String y = Integer.toBinaryString(j);
 			int count0 = 26 - y.length();
-    		for ( int i = 0; i< count0; i++) {
-    			y = '0' + y;
-    		}
+			for (int i = 0; i < count0; i++) {
+				y = '0' + y;
+			}
 			opcode = x + y;
 		} else if (s[0].equals("jr")) {
 			x = "001000 ";

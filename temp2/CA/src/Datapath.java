@@ -48,13 +48,18 @@ public class Datapath {
 	reg $fp = new reg();
 	reg $ra = new reg();
 	boolean zero = false;
+	boolean negative = false;
 	int clockCycle = 0;
 	ArrayList<String> instructions = new ArrayList<String>();
 	
 	public Datapath(long pc) {
 		this.pc = pc;
+		this.$zero.data="00000000000000000000000000000000";
 	}
 
+	public void setReg(String s, String val){
+		this.findRegByOpcode(s).data= val;
+	}
 	public void performInstruction() throws ModifyZeroException {
 		String ins = im.getInstruction(pc);
 		pc = adder.add(pc, 4);
@@ -138,6 +143,15 @@ public class Datapath {
 						resultMux2, 100010);
 				if (Long.parseLong(aluRes, 2) == 0) {
 					zero = true;
+				}
+			}
+			
+			// blt
+			if (in.equals("111111")) {
+				aluRes = alu.performOperation(registerFile.rregister1.data,
+						resultMux2, 100010);
+				if (Long.parseLong(aluRes, 2) < 0) {
+					negative = true;
 				}
 			}
 
@@ -332,7 +346,7 @@ public class Datapath {
 
 			if (branch) {
 				if ((in.equals("000100") && zero)
-						|| (in.equals("000101") && !zero)) {
+						|| (in.equals("000101") && !zero)|| (in.equals(111111) && negative)) {
 					controlAdderTwo = 1;
 				}
 			}
