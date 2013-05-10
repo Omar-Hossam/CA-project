@@ -34,7 +34,7 @@ public class ALU {
     		}
     		counter = 32 - binaryValue.length();
     		for ( int i = 0; i< counter; i++) {
-    			binaryValue = '0' + binaryValue;
+    			binaryValue = '1' + binaryValue;
     		}
     		return binaryValue;
 
@@ -83,11 +83,9 @@ public class ALU {
     		return binaryValue;
 
     	case 000010:
-    		System.out.println("1");
     		temp = Long.parseLong(data1, 2) >>> Long.parseLong(data2, 2);
     		
     		binaryValue = Long.toBinaryString(temp);
-    		System.out.println(binaryValue);
     		counter = 32 - binaryValue.length();
     		for ( int i = 0; i< counter; i++) {
     			binaryValue = '0' + binaryValue;
@@ -95,11 +93,9 @@ public class ALU {
     		return binaryValue;  
     		
     	case 10:
-    		System.out.println("1");
     		temp = Long.parseLong(data1, 2) >>> Long.parseLong(data2, 2);
     		
     		binaryValue = Long.toBinaryString(temp);
-    		System.out.println(binaryValue);
     		counter = 32 - binaryValue.length();
     		for ( int i = 0; i< counter; i++) {
     			binaryValue = '0' + binaryValue;
@@ -108,9 +104,16 @@ public class ALU {
 
     	case 101010:
     		if(Long.parseLong(data1,2) < Long.parseLong(data2,2)){
-    			return "1";
+    			binaryValue =  "1";
     		}
-    		return "0";
+    		else{
+    			binaryValue="0";
+    		}
+    		counter = 32 - binaryValue.length();
+    		for ( int i = 0; i< counter; i++) {
+    			binaryValue = '0' + binaryValue;
+    		}
+    		return binaryValue;
     }
     
     return "";

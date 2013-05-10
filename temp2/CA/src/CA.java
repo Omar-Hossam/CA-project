@@ -207,7 +207,7 @@ public class CA {
 			shamt = "00000";
 			rd = s[1];
 			rt = s[2];
-			opcode = "000000" + " " + rt + " " + "00010 " + rd + " " + shamt
+			opcode = "000000" + " " + rt + " " + "00000" +" "+ rd + " " + shamt
 					+ " " + x;
 		} else if (s[0].equals("blt")) {
 			x = "111111";
@@ -263,7 +263,7 @@ public class CA {
 					break;
 				}
 			}
-			int offset = (j - (this.counter + 1));
+			int offset = (j - (this.counter + 1)) * 4;
 			String tempString = Integer.toBinaryString(offset);
 			if (tempString.length() > 16) {
 				int counter2 = tempString.length() - 16;
@@ -288,7 +288,7 @@ public class CA {
 					break;
 				}
 			}
-			int offset = (j - (this.counter + 1));
+			int offset = (j - (this.counter + 1))*4;
 			String tempString = Integer.toBinaryString(offset);
 			if (tempString.length() > 16) {
 				int counter2 = tempString.length() - 16;
@@ -312,14 +312,14 @@ public class CA {
 				}
 
 			}
-			String y = Integer.toBinaryString(j);
+			String y = Integer.toBinaryString((j-1)*4);
 			int count0 = 26 - y.length();
 			for (int i = 0; i < count0; i++) {
 				y = '0' + y;
 			}
 			opcode = x + y;
 		} else if (s[0].equals("jal")) {
-			x = "000011";
+			x = "000011 ";
 			int j = 0;
 			for (int i = 0; i < (labels).size(); i++) {
 				Label l = (Label) labels.get(i);
@@ -329,7 +329,7 @@ public class CA {
 				}
 
 			}
-			String y = Integer.toBinaryString(j);
+			String y = Integer.toBinaryString((j-1)*4);
 			int count0 = 26 - y.length();
 			for (int i = 0; i < count0; i++) {
 				y = '0' + y;
@@ -344,8 +344,10 @@ public class CA {
 			rd = s[1];
 			rs = s[2];
 			rt = s[3];
-			opcode = "000000" + " " + " " + rs + " " + rt + " " + rd + " "
+			opcode = "000000" + " " + rs + " " + rt + " " + rd + " "
 					+ shamt + " " + x;
+		} else if (s[0].equals("end")) {
+			return "end";
 		}
 
 		this.counter++;
@@ -406,6 +408,10 @@ public class CA {
 		} else if (s[0].equals("jr")) {
 			opcode = "no";
 		} else if (s[0].equals("slt")) {
+			opcode = "no";
+		}else if (s[0].equals("move")) {
+			opcode = "no";
+		}else if (s[0].equals("blt")) {
 			opcode = "no";
 		} else {
 			return "label exists";
